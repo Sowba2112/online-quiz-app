@@ -1,10 +1,3 @@
-function checkAnswer(answer) {
-    if (answer === "Delhi") {
-        document.getElementById("result").innerText = "Correct Answer!";
-    } else {
-        document.getElementById("result").innerText = "Wrong Answer!";
-    }
-}
 const quizData = [
     {
         question: "What is the capital of India?",
@@ -55,4 +48,43 @@ const quizData = [
         correct: "c"
     }
     ];
+    
+    let currentQuestion = 0;
+    let score = 0;
+    
+    function loadQuiz() {
+    
+        document.getElementById("question").innerText =
+            quizData[currentQuestion].question;
+    
+        document.getElementById("a").innerText =
+            quizData[currentQuestion].a;
+    
+        document.getElementById("b").innerText =
+            quizData[currentQuestion].b;
+    
+        document.getElementById("c").innerText =
+            quizData[currentQuestion].c;
+    
+        document.getElementById("d").innerText =
+            quizData[currentQuestion].d;
+    }
+    
+    function nextQuestion(answer) {
+    
+        if (answer === quizData[currentQuestion].correct) {
+            score++;
+        }
+    
+        currentQuestion++;
+    
+        if (currentQuestion < quizData.length) {
+            loadQuiz();
+        } else {
+            document.getElementById("quiz").innerHTML =
+                "<h2>Your Score: " + score + "/" + quizData.length + "</h2>";
+        }
+    }
+    
+    loadQuiz();
     

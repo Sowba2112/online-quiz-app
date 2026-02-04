@@ -7,13 +7,16 @@
 <body>
     <h2>Online Quiz Application</h2>
 
-    <p id="question">What is the capital of India?</p>
+    <div id="quiz">
 
-    <button onclick="checkAnswer('Delhi')">Delhi</button>
-    <button onclick="checkAnswer('Mumbai')">Mumbai</button>
-    <button onclick="checkAnswer('Chennai')">Chennai</button>
-
-    <p id="result"></p>
+        <h2 id="question"></h2>
+        
+        <button onclick="nextQuestion('a')" id="a"></button>
+        <button onclick="nextQuestion('b')" id="b"></button>
+        <button onclick="nextQuestion('c')" id="c"></button>
+        <button onclick="nextQuestion('d')" id="d"></button>
+        
+        </div>
 
     <script src="script.js"></script>
 </body>
