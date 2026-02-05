@@ -6,18 +6,12 @@ const quizData = [
 },
 {
     question: "Which language is used for web styling?",
-    a: "HTML",
-    b: "Python",
-    c: "CSS",
-    d: "Java",
+    a: "HTML", b: "Python", c: "CSS", d: "Java",
     correct: "c"
 },
 {
     question: "Which company developed Java?",
-    a: "Sun Microsystems",
-    b: "Google",
-    c: "Microsoft",
-    d: "Apple",
+    a: "Sun Microsystems", b: "Google", c: "Microsoft", d: "Apple",
     correct: "a"
 },
 {
