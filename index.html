@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Online Quiz</title>
-    <link rel="stylesheet" href="style.css">
+<title>Advanced ECE Quiz</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="quiz-container">
 
-    <h2 id="question">Question here</h2>
+<h2 id="question">Question Text</h2>
 
-    <button class="option" id="a" onclick="selectAnswer(this,'a')"></button>
-    <button class="option" id="b" onclick="selectAnswer(this,'b')"></button>
-    <button class="option" id="c" onclick="selectAnswer(this,'c')"></button>
-    <button class="option" id="d" onclick="selectAnswer(this,'d')"></button>
+<div id="progress"></div>
+<div id="timer">Time: 10</div>
 
-    <button id="nextBtn" onclick="nextQuestion()">Next Question</button>
+<ul id="answer-buttons"></ul>
+
+<button id="nextBtn">Next</button>
 
 </div>
 

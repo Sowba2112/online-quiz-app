@@ -1,153 +1,100 @@
-const quizData = [
-{
-    question:"Capital of India?",
-    a:"Chennai", b:"Delhi", c:"Mumbai", d:"Kolkata",
-    correct:"b"
-},
-{
-    question: "Which language is used for web styling?",
-    a: "HTML", b: "Python", c: "CSS", d: "Java",
-    correct: "c"
-},
-{
-    question: "Which company developed Java?",
-    a: "Sun Microsystems", b: "Google", c: "Microsoft", d: "Apple",
-    correct: "a"
-},
-{
-    question:"Styling language?",
-    a:"HTML", b:"Java", c:"CSS", d:"Python",
-    correct:"c"
-},
-
-{
-    question:"Who is known as Father of Nation (India)?",
-    a:"Nehru",
-    b:"Gandhi",
-    c:"Subhash Chandra Bose",
-    d:"Tagore",
-    correct:"b"
-},
-
-{
-    question:"Which planet is known as Red Planet?",
-    a:"Earth",
-    b:"Mars",
-    c:"Jupiter",
-    d:"Venus",
-    correct:"b"
-},
-
-{
-    question:"Largest ocean in world?",
-    a:"Indian Ocean",
-    b:"Atlantic Ocean",
-    c:"Pacific Ocean",
-    d:"Arctic Ocean",
-    correct:"c"
-},
-
-{
-    question:"Which is national animal of India?",
-    a:"Lion",
-    b:"Elephant",
-    c:"Tiger",
-    d:"Leopard",
-    correct:"c"
-},
-
-{
-    question:"Which gas do humans breathe in?",
-    a:"Oxygen",
-    b:"Hydrogen",
-    c:"Carbon",
-    d:"Nitrogen",
-    correct:"a"
-},
-
-{
-    question:"Which is fastest land animal?",
-    a:"Tiger",
-    b:"Horse",
-    c:"Cheetah",
-    d:"Dog",
-    correct:"c"
-},
-
-{
-    question:"How many continents are there?",
-    a:"5",
-    b:"6",
-    c:"7",
-    d:"8",
-    correct:"c"
-},
-
-{
-    question:"Which is smallest prime number?",
-    a:"0",
-    b:"1",
-    c:"2",
-    d:"3",
-    correct:"c"
-},
-
-{
-    question:"Which festival is called Festival of Lights?",
-    a:"Holi",
-    b:"Diwali",
-    c:"Eid",
-    d:"Pongal",
-    correct:"b"
-}
+const quizData=[
+{question:"What does ECE stand for?",options:["Electrical Engineering","Electronics and Communication Engineering","Electronic Control","Embedded Circuit Eng"],correct:1},
+{question:"Which device converts analog to digital?",options:["DAC","ADC","Resistor","Filter"],correct:1},
+{question:"Which component stores charge?",options:["Resistor","Capacitor","Inductor","Fuse"],correct:1},
+{question:"Which modulation used in FM?",options:["AM","FM","PWM","PCM"],correct:1},
+{question:"Which IC is timer?",options:["741","555","8085","8051"],correct:1},
+{question:"Which gate needs both inputs 1?",options:["OR","AND","NOT","XOR"],correct:1},
+{question:"Which generates waveform?",options:["Oscillator","Switch","Relay","Fuse"],correct:0},
+{question:"Wireless communication example?",options:["USB","Ethernet","Bluetooth","HDMI"],correct:2},
+{question:"Frequency unit?",options:["Volt","Hertz","Ampere","Ohm"],correct:1},
+{question:"Microwave frequency range?",options:["300MHz–300GHz","1Hz–10Hz","20Hz–20kHz","10kHz–20kHz"],correct:0},
+{question:"Signal amplifier device?",options:["Transistor","Capacitor","Resistor","Fuse"],correct:0},
+{question:"TV broadcasting antenna?",options:["Dipole","Loop","Horn","Patch"],correct:0},
+{question:"Low frequency filter?",options:["Low Pass","High Pass","Band Stop","Band Pass"],correct:0},
+{question:"Satellite communication uses?",options:["Space waves","Sound waves","Water waves","Magnetic waves"],correct:0},
+{question:"CPU full form?",options:["Central Processing Unit","Control Processing Unit","Central Program Unit","Core Power Unit"],correct:0}
 ];
 
-let currentQuiz=0;
+let current=0;
 let score=0;
+let timer=10;
+let interval;
 
-loadQuiz();
+const question=document.getElementById("question");
+const answers=document.getElementById("answer-buttons");
+const nextBtn=document.getElementById("nextBtn");
+const progress=document.getElementById("progress");
+const timerText=document.getElementById("timer");
 
-function loadQuiz(){
-
-    document.getElementById("nextBtn").style.display="none";
-
-    const data=quizData[currentQuiz];
-
-    document.getElementById("question").innerText=data.question;
-    document.getElementById("a").innerText=data.a;
-    document.getElementById("b").innerText=data.b;
-    document.getElementById("c").innerText=data.c;
-    document.getElementById("d").innerText=data.d;
-
-    const buttons=document.querySelectorAll(".option");
-    buttons.forEach(btn=>{
-        btn.disabled=false;
-        btn.classList.remove("correct","wrong");
-    });
+function startQuiz(){
+current=0;
+score=0;
+loadQuestion();
 }
 
-function selectAnswer(button,answer){
+function loadQuestion(){
 
-    const buttons=document.querySelectorAll(".option");
-    buttons.forEach(btn=>btn.disabled=true);
+clearInterval(interval);
+timer=10;
 
-    if(answer===quizData[currentQuiz].correct){
-        button.classList.add("correct");
-        score++;
-    }else{
-        button.classList.add("wrong");
-    }
+progress.innerText=`Question ${current+1}/${quizData.length}`;
+timerText.innerText="Time:"+timer;
 
-    document.getElementById("nextBtn").style.display="block";
+interval=setInterval(()=>{
+timer--;
+timerText.innerText="Time:"+timer;
+if(timer===0){
+clearInterval(interval);
+nextBtn.style.display="block";
+}
+},1000);
+
+let q=quizData[current];
+question.innerText=q.question;
+answers.innerHTML="";
+nextBtn.style.display="none";
+
+q.options.forEach((opt,index)=>{
+let btn=document.createElement("button");
+btn.innerText=opt;
+btn.onclick=()=>selectAnswer(btn,index);
+answers.appendChild(btn);
+});
 }
 
-function nextQuestion(){
-    currentQuiz++;
+function selectAnswer(button,index){
 
-    if(currentQuiz<quizData.length){
-        loadQuiz();
-    }else{
-        document.querySelector(".quiz-container").innerHTML=
-        "<h2>Your Score: "+score+"/"+quizData.length+"</h2>";
-    }
+clearInterval(interval);
+
+let correct=quizData[current].correct;
+if(index===correct){
+button.classList.add("correct");
+score++;
+}else{
+button.classList.add("wrong");
 }
+
+Array.from(answers.children).forEach(btn=>btn.disabled=true);
+
+nextBtn.style.display="block";
+}
+
+nextBtn.onclick=()=>{
+current++;
+if(current<quizData.length){
+loadQuestion();
+}else{
+showScore();
+}
+};
+
+function showScore(){
+question.innerText=`You scored ${score}/${quizData.length}`;
+answers.innerHTML="";
+nextBtn.style.display="none";
+progress.innerText="Quiz Finished";
+timerText.innerText="";
+}
+
+startQuiz();
