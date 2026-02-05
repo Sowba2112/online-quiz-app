@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Online Quiz App</title>
+    <title>Online Quiz Application</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h2>Online Quiz Application</h2>
 
-    <div id="quiz">
+<body class="theme1">
 
-        <h2 id="question"></h2>
-        
-        <button onclick="nextQuestion('a')" id="a"></button>
-        <button onclick="nextQuestion('b')" id="b"></button>
-        <button onclick="nextQuestion('c')" id="c"></button>
-        <button onclick="nextQuestion('d')" id="d"></button>
-        
-        </div>
+<div class="quiz-container" id="quiz">
 
-    <script src="script.js"></script>
+<h2 id="question">Question</h2>
+
+<button onclick="checkAnswer('a')" id="a"></button>
+<button onclick="checkAnswer('b')" id="b"></button>
+<button onclick="checkAnswer('c')" id="c"></button>
+<button onclick="checkAnswer('d')" id="d"></button>
+
+<p id="result"></p>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>

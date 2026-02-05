@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: 0.5s;
 }
 
 .quiz-container {
@@ -18,7 +18,7 @@ body {
 }
 
 h2 {
-    text-align: center;
+    margin-bottom: 20px;
 }
 
 button {
@@ -36,4 +36,27 @@ button {
 
 button:hover {
     background: #5a67d8;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* THEMES */
+
+.theme1 {
+    background: linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.theme2 {
+    background: linear-gradient(135deg,#ff9966,#ff5e62);
+}
+
+.theme3 {
+    background: linear-gradient(135deg,#56ab2f,#a8e063);
+}
+
+.theme4 {
+    background: linear-gradient(135deg,#36d1dc,#5b86e5);
 }
