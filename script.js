@@ -5,6 +5,30 @@ const quizData = [
     correct:"b"
 },
 {
+    question: "Which language is used for web styling?",
+    a: "HTML",
+    b: "Python",
+    c: "CSS",
+    d: "Java",
+    correct: "c"
+},
+{
+    question: "Which company developed Java?",
+    a: "Sun Microsystems",
+    b: "Google",
+    c: "Microsoft",
+    d: "Apple",
+    correct: "a"
+},
+{
+    question: "What does CPU stand for?",
+    a: "Central Processing Unit",
+    b: "Computer Personal Unit",
+    c: "Central Program Unit",
+    d: "Control Processing Unit",
+    correct: "a"
+}
+{
     question:"Styling language?",
     a:"HTML", b:"Java", c:"CSS", d:"Python",
     correct:"c"
