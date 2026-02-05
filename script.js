@@ -27,7 +27,7 @@ const quizData = [
     c: "Central Program Unit",
     d: "Control Processing Unit",
     correct: "a"
-}
+},
 {
     question:"Styling language?",
     a:"HTML", b:"Java", c:"CSS", d:"Python",
